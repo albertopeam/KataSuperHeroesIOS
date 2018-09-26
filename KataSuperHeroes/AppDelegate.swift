@@ -13,14 +13,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-            window = UIWindow(frame:UIScreen.main.bounds)
-            installRootViewControllerIntoWindow(window)
-            configureWindow()
-            configureNavigationBarStyle()
-            window?.makeKeyAndVisible()
-            return true
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        window = UIWindow(frame:UIScreen.main.bounds)
+        installRootViewControllerIntoWindow(window)
+        configureWindow()
+        configureNavigationBarStyle()
+        window?.makeKeyAndVisible()
+        //CAMBIAR VELOCIDAD DE LOS TESTS:
+            //esto puede inducir a errores de aserción
+            //matching de fuetes
+        //!!!! NO RECOMENDABLE !!!!
+        if NSClassFromString("XCTest") != nil {
+            // UIApplication.shared.keyWindow!.layer.speed = 500
+        }
+        return true
     }
 
     fileprivate func installRootViewControllerIntoWindow(_ window: UIWindow?) {
