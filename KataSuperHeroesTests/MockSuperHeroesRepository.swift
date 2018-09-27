@@ -23,3 +23,9 @@ class MockSuperHeroesRepository: SuperHeroesRepository {
     }
 
 }
+
+class MockSuperHeroesRepositoryNoResponse: MockSuperHeroesRepository {
+    override func getAll(_ completion: @escaping ([SuperHero]) -> ()) {}
+    
+    override func getSuperHero(withName name: String, completion: @escaping (SuperHero?) -> ()) {}
+}

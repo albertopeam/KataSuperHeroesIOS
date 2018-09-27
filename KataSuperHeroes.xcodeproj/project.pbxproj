@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2EF423110536FA1BE9F3D026 /* Pods_KataSuperHeroesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52BB6D7EC1A35D967ACA058D /* Pods_KataSuperHeroesTests.framework */; };
-		C30E55F4215BCF76004DFF68 /* SuperHeroeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30E55F3215BCF76004DFF68 /* SuperHeroeViewControllerTests.swift */; };
+		C30E55F4215BCF76004DFF68 /* SuperHeroeDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30E55F3215BCF76004DFF68 /* SuperHeroeDetailViewControllerTests.swift */; };
 		EB8705FF1C46508E00B66C19 /* XCTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8705FE1C46508E00B66C19 /* XCTestCase.swift */; };
 		EB8706011C46510300B66C19 /* KIFTestActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8706001C46510300B66C19 /* KIFTestActor.swift */; };
 		EB8706031C46513E00B66C19 /* SuperHeroesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8706021C46513E00B66C19 /* SuperHeroesViewControllerTests.swift */; };
@@ -51,7 +51,7 @@
 		7FC32F3D31A7392656DF9EC8 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91340F19D0D930E9F02F1DEA /* Pods-KataSuperHeroesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KataSuperHeroesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KataSuperHeroesTests/Pods-KataSuperHeroesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		981F37EA85F06E461D7BE716 /* Pods-KataSuperHeroesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KataSuperHeroesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KataSuperHeroesTests/Pods-KataSuperHeroesTests.release.xcconfig"; sourceTree = "<group>"; };
-		C30E55F3215BCF76004DFF68 /* SuperHeroeViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperHeroeViewControllerTests.swift; sourceTree = "<group>"; };
+		C30E55F3215BCF76004DFF68 /* SuperHeroeDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperHeroeDetailViewControllerTests.swift; sourceTree = "<group>"; };
 		EB8705FE1C46508E00B66C19 /* XCTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestCase.swift; sourceTree = "<group>"; };
 		EB8706001C46510300B66C19 /* KIFTestActor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KIFTestActor.swift; sourceTree = "<group>"; };
 		EB8706021C46513E00B66C19 /* SuperHeroesViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuperHeroesViewControllerTests.swift; sourceTree = "<group>"; };
@@ -110,14 +110,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		C30E55F2215BCF57004DFF68 /* Super Hero */ = {
-			isa = PBXGroup;
-			children = (
-				C30E55F3215BCF76004DFF68 /* SuperHeroeViewControllerTests.swift */,
-			);
-			name = "Super Hero";
-			sourceTree = "<group>";
-		};
 		EB8705FD1C46508400B66C19 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				EB8706021C46513E00B66C19 /* SuperHeroesViewControllerTests.swift */,
+				C30E55F3215BCF76004DFF68 /* SuperHeroeDetailViewControllerTests.swift */,
 			);
 			name = "Super Heroes";
 			sourceTree = "<group>";
@@ -182,7 +175,6 @@
 		EBC230881C45016A007D5068 /* KataSuperHeroesTests */ = {
 			isa = PBXGroup;
 			children = (
-				C30E55F2215BCF57004DFF68 /* Super Hero */,
 				EB8706061C4653C400B66C19 /* Super Heroes */,
 				EB8706071C4656B700B66C19 /* Test Doubles */,
 				EB8705FD1C46508400B66C19 /* Extensions */,
@@ -484,7 +476,7 @@
 				EB8706011C46510300B66C19 /* KIFTestActor.swift in Sources */,
 				EB8705FF1C46508E00B66C19 /* XCTestCase.swift in Sources */,
 				EB8706051C4653AC00B66C19 /* AcceptanceTestCase.swift in Sources */,
-				C30E55F4215BCF76004DFF68 /* SuperHeroeViewControllerTests.swift in Sources */,
+				C30E55F4215BCF76004DFF68 /* SuperHeroeDetailViewControllerTests.swift in Sources */,
 				EB8706031C46513E00B66C19 /* SuperHeroesViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
