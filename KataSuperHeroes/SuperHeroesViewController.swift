@@ -13,11 +13,14 @@ class SuperHeroesViewController: KataSuperHeroesViewController, BothamTableViewC
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyCaseView: UILabel!
-
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var searchView: UIView!
+    
     var dataSource: BothamTableViewDataSource<SuperHero, SuperHeroTableViewCell>!
     var delegate: UITableViewDelegate!
 
     override func viewDidLoad() {
+        searchView.layer.cornerRadius = 8
         tableView.dataSource = dataSource
         tableView.delegate = delegate
         tableView.tableFooterView = UIView()
@@ -29,13 +32,42 @@ class SuperHeroesViewController: KataSuperHeroesViewController, BothamTableViewC
 
     func showEmptyCase() {
         emptyCaseView.isHidden = false
+        tableView.isHidden = true
+    }
+    
+    func hideEmptyCase() {
+        emptyCaseView.isHidden = true
+        tableView.isHidden = false
+    }
+    
+    func showSuperHeroes(items: [SuperHero]) {
+        show(items: items)
     }
 
     func openSuperHeroDetailScreen(_ superHeroDetailViewController: UIViewController) {
         navigationController?.push(viewController: superHeroDetailViewController)
     }
 
-    fileprivate func configureNavigationBarBackButton() {
+    private func configureNavigationBarBackButton() {
         navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
     }
+    
+    func clearSearch() {
+        nameTextField.text = ""
+        nameTextField.endEditing(true)
+    }
+}
+
+extension SuperHeroesViewController {
+    
+    @IBAction func removeFilter(_ sender: Any) {
+        presenter.viewDidLoad()
+    }
+    
+    @IBAction func editingChanged(_ sender: UITextField) {
+        let heroesPresenter  = presenter as! SuperHeroesPresenter
+        let term = sender.text ?? ""
+        heroesPresenter.search(term: term)
+    }
+    
 }

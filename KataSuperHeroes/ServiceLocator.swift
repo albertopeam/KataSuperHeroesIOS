@@ -49,11 +49,16 @@ class ServiceLocator {
 
     fileprivate func provideSuperHeroesPresenter(_ ui: SuperHeroesUI) -> SuperHeroesPresenter {
         let getSuperHeroes = provideGetSuperHeroesUseCase()
-        return SuperHeroesPresenter(ui: ui, getSuperHeroes: getSuperHeroes)
+        let getSuperHeroByName = provideGetSuperHeroByName()
+        return SuperHeroesPresenter(ui: ui, getSuperHeroes: getSuperHeroes, getSuperHeroByName: getSuperHeroByName)
     }
 
     fileprivate func provideGetSuperHeroesUseCase() -> GetSuperHeroes {
         return GetSuperHeroes(repository: SuperHeroesRepository())
+    }
+    
+    private func provideGetSuperHeroByName() -> GetSuperHeroByName {
+        return GetSuperHeroByName(repository: SuperHeroesRepository())
     }
 
     fileprivate lazy var storyBoard: BothamStoryboard = {

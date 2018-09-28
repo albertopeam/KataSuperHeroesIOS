@@ -89,8 +89,9 @@ class SuperHeroeDetailViewControllerTests: AcceptanceTestCase {
 //        expect(vcs.count).to(equal(0))
 //    }
     
-    // Spec 7. when no network or error(json, parsing, timeout, etc...) then show error //TODO: maybe not apply because no network is accessed but in the real one I think yes
-    // Spec 8. when no valid superhero then show empty/error //TODO: maybe not apply because it is not considered in the code
+    // Spec 7. when no network or error(json, parsing, timeout, etc...) then show error //TODO: not apply because no network is accessed but in the real one I think yes
+    // Spec 8. when no valid superhero then show empty/error //TODO: not apply because it is not considered in the code
+    
     
     // PRAGMA: private
     fileprivate func givenNoResponseRepository(){
