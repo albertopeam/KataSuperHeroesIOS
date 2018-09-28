@@ -134,6 +134,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Kata Super Heroes" id="wfY-wT-rF3"/>
                     <connections>
+                        <outlet property="clearButton" destination="jlC-OP-JYL" id="zLx-cF-AIi"/>
                         <outlet property="emptyCaseView" destination="kOF-w6-oKO" id="NiL-QQ-7jJ"/>
                         <outlet property="nameTextField" destination="Com-vM-zL0" id="g6N-Am-4pQ"/>
                         <outlet property="searchView" destination="xNy-s3-GsF" id="IXD-BI-c2n"/>

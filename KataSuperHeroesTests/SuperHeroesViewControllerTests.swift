@@ -139,7 +139,80 @@ class SuperHeroesViewControllerTests: AcceptanceTestCase {
         //IMPORTANT: be carefull!!
     }
     
-    // TODO: testing with rotations? 
+    // Spec 8. when load N items match that they are in order
+    func test_given_two_heros_when_didload_then_match_order() {
+        let numberOfHeroes = 2
+        let heroes = givenThereAreSomeSuperHeroes(numberOfHeroes, avengers: false)
+        
+        let sut = openSuperHeroesViewController()
+        
+        for i in 0..<numberOfHeroes {
+            let cell = tester().waitForCell(at: IndexPath(row: i, section: 0), in: sut.tableView) as! SuperHeroTableViewCell
+            expect(cell.nameLabel.text).to(equal(heroes[i].name))
+        }
+    }
+    
+    // Spec 9. when search existing hero/avenger then show only one
+    func test_given_search_existing_hero_when_write_then_match_appear_only_one() {
+        let numberOfHeroes = 10
+        let heroes = givenThereAreSomeSuperHeroes(numberOfHeroes, avengers: false)
+        
+        let sut = openSuperHeroesViewController()
+        
+        _ = tester().waitForCell(at: IndexPath(row: 0, section: 0), in: sut.tableView) as! SuperHeroTableViewCell
+        let lastHero = heroes.last!
+        tester().tapView(withAccessibilityLabel: "SuperHeroesSearchTextField")
+        tester().enterText(intoCurrentFirstResponder: lastHero.name)
+        tester().waitForAbsenceOfView(withAccessibilityLabel: "LoadingView")
+        let cell = tester().waitForCell(at: IndexPath(row: 0, section: 0), in: sut.tableView) as! SuperHeroTableViewCell
+        expect(cell.nameLabel.text).to(equal(lastHero.name))
+    }
+    
+    // Spec 10. when search non existing hero/avenger then show empty
+    func test_given_search_non_existing_hero_when_write_then_match_empty() {
+        let numberOfHeroes = 5
+        _ = givenThereAreSomeSuperHeroes(numberOfHeroes, avengers: false)
+        
+        let sut = openSuperHeroesViewController()
+        
+        _ = tester().waitForCell(at: IndexPath(row: 0, section: 0), in: sut.tableView) as! SuperHeroTableViewCell
+        tester().tapView(withAccessibilityLabel: "SuperHeroesSearchTextField")
+        tester().enterText(intoCurrentFirstResponder: "Fake name")
+        tester().waitForAbsenceOfView(withAccessibilityLabel: "LoadingView")
+        tester().waitForView(withAccessibilityLabel: "¯\\_(ツ)_/¯")
+    }
+    
+    // Spec 11. when search is cleared then show all
+    func test_given_some_heroes_when_clear_text_then_match_heroes() {
+        let numberOfHeroes = 3
+        _ = givenThereAreSomeSuperHeroes(numberOfHeroes, avengers: false)
+        
+        let sut = openSuperHeroesViewController()
+        
+        tester().tapView(withAccessibilityLabel: "SuperHeroesSearchTextField")
+        tester().enterText(intoCurrentFirstResponder: "Fake name")
+        tester().waitForView(withAccessibilityLabel: "¯\\_(ツ)_/¯")
+        tester().enterText(intoCurrentFirstResponder: "")
+        for i in 0..<numberOfHeroes {
+            _ = tester().waitForCell(at: IndexPath(row: i, section: 0), in: sut.tableView) as! SuperHeroTableViewCell
+        }
+    }
+    
+    // Spec 12. when close search existing hero/avenger then show all
+    func test_given_some_heroes_when_close_then_match_heroes() {
+        let numberOfHeroes = 3
+        _ = givenThereAreSomeSuperHeroes(numberOfHeroes, avengers: false)
+        
+        let sut = openSuperHeroesViewController()
+        
+        tester().tapView(withAccessibilityLabel: "SuperHeroesSearchTextField")
+        tester().enterText(intoCurrentFirstResponder: "Fake name")
+        tester().waitForView(withAccessibilityLabel: "¯\\_(ツ)_/¯")
+        tester().tapView(withAccessibilityLabel: "SuperHeroesClearButton")
+        for i in 0..<numberOfHeroes {
+            _ = tester().waitForCell(at: IndexPath(row: i, section: 0), in: sut.tableView) as! SuperHeroTableViewCell
+        }
+    }
     
     // MARK: private
 
@@ -166,7 +239,7 @@ class SuperHeroesViewControllerTests: AcceptanceTestCase {
         let superHeroesViewController = ServiceLocator()
             .provideSuperHeroesViewController() as! SuperHeroesViewController
         superHeroesViewController.presenter = SuperHeroesPresenter(ui: superHeroesViewController,
-                getSuperHeroes: GetSuperHeroes(repository: repository))
+                                                                   getSuperHeroes: GetSuperHeroes(repository: repository), getSuperHeroByName: GetSuperHeroByName(repository: repository))
         let rootViewController = UINavigationController()
         rootViewController.viewControllers = [superHeroesViewController]
         present(viewController: rootViewController)

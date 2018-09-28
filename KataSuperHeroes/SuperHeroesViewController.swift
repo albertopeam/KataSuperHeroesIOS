@@ -15,6 +15,7 @@ class SuperHeroesViewController: KataSuperHeroesViewController, BothamTableViewC
     @IBOutlet weak var emptyCaseView: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var searchView: UIView!
+    @IBOutlet weak var clearButton: UIButton!
     
     var dataSource: BothamTableViewDataSource<SuperHero, SuperHeroTableViewCell>!
     var delegate: UITableViewDelegate!
@@ -26,6 +27,8 @@ class SuperHeroesViewController: KataSuperHeroesViewController, BothamTableViewC
         tableView.tableFooterView = UIView()
         tableView.accessibilityLabel = "SuperHeroesTableView"
         tableView.accessibilityIdentifier = "SuperHeroesTableView"
+        nameTextField.accessibilityLabel = "SuperHeroesSearchTextField"
+        clearButton.accessibilityLabel = "SuperHeroesClearButton"
         configureNavigationBarBackButton()
         super.viewDidLoad()
     }
