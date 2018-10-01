@@ -158,6 +158,7 @@ class SuperHeroesViewControllerTests: AcceptanceTestCase {
         let heroes = givenThereAreSomeSuperHeroes(numberOfHeroes, avengers: false)
         
         let sut = openSuperHeroesViewController()
+        sut.searchController.isActive = true
         
         _ = tester().waitForCell(at: IndexPath(row: 0, section: 0), in: sut.tableView) as! SuperHeroTableViewCell
         let lastHero = heroes.last!
@@ -174,6 +175,7 @@ class SuperHeroesViewControllerTests: AcceptanceTestCase {
         _ = givenThereAreSomeSuperHeroes(numberOfHeroes, avengers: false)
         
         let sut = openSuperHeroesViewController()
+        sut.searchController.isActive = true
         
         _ = tester().waitForCell(at: IndexPath(row: 0, section: 0), in: sut.tableView) as! SuperHeroTableViewCell
         tester().tapView(withAccessibilityLabel: "SuperHeroesSearchTextField")
@@ -188,6 +190,7 @@ class SuperHeroesViewControllerTests: AcceptanceTestCase {
         _ = givenThereAreSomeSuperHeroes(numberOfHeroes, avengers: false)
         
         let sut = openSuperHeroesViewController()
+        sut.searchController.isActive = true
         
         tester().tapView(withAccessibilityLabel: "SuperHeroesSearchTextField")
         tester().enterText(intoCurrentFirstResponder: "Fake name")
@@ -204,6 +207,7 @@ class SuperHeroesViewControllerTests: AcceptanceTestCase {
         _ = givenThereAreSomeSuperHeroes(numberOfHeroes, avengers: false)
         
         let sut = openSuperHeroesViewController()
+        sut.searchController.isActive = true
         
         tester().tapView(withAccessibilityLabel: "SuperHeroesSearchTextField")
         tester().enterText(intoCurrentFirstResponder: "Fake name")

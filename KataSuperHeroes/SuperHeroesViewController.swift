@@ -16,21 +16,32 @@ class SuperHeroesViewController: KataSuperHeroesViewController, BothamTableViewC
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var clearButton: UIButton!
+    var searchController:UISearchController!
     
     var dataSource: BothamTableViewDataSource<SuperHero, SuperHeroTableViewCell>!
     var delegate: UITableViewDelegate!
 
     override func viewDidLoad() {
-        searchView.layer.cornerRadius = 8
+        super.viewDidLoad()
         tableView.dataSource = dataSource
         tableView.delegate = delegate
         tableView.tableFooterView = UIView()
         tableView.accessibilityLabel = "SuperHeroesTableView"
         tableView.accessibilityIdentifier = "SuperHeroesTableView"
-        nameTextField.accessibilityLabel = "SuperHeroesSearchTextField"
-        clearButton.accessibilityLabel = "SuperHeroesClearButton"
         configureNavigationBarBackButton()
-        super.viewDidLoad()
+        
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        let scb = searchController.searchBar
+        scb.tintColor = .white
+        scb.barStyle = .black
+        let texfield = scb.textField
+        texfield?.accessibilityLabel = "SuperHeroesSearchTextField"
+        texfield?.textColor = .white
+        texfield?.tintColor = .white
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
 
     func showEmptyCase() {
@@ -67,10 +78,16 @@ extension SuperHeroesViewController {
         presenter.viewDidLoad()
     }
     
-    @IBAction func editingChanged(_ sender: UITextField) {
+}
+
+extension SuperHeroesViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
         let heroesPresenter  = presenter as! SuperHeroesPresenter
-        let term = sender.text ?? ""
+        let term = searchController.searchBar.text ?? ""
         heroesPresenter.search(term: term)
+        let cancelButton = searchController.searchBar.cancelButton
+        cancelButton?.accessibilityLabel = "SuperHeroesClearButton"
     }
     
 }
